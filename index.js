@@ -7,6 +7,7 @@ const s3 = require('s3');
 
 (async () => {
   try {
+    console.log('Building release binary')
     await new Promise((rs, rj) => exec(`
       set -e
       test -d android || (echo "Unable to find android dir, run for rn project root" && exit 1)
@@ -25,7 +26,8 @@ const s3 = require('s3');
       s3Options: {
         accessKeyId: process.env.PTHROW_ACCESS_ID,
         secretAccessKey: process.env.PTHROW_ACCESS_SECRET,
-        s3BucketEndpoint: process.env.PTHROW_SPACE_ENDPOINT,
+        s3BucketEndpoint: !!process.env.PTHROW_SPACE_ENDPOINT,
+        endpoint: process.env.PTHROW_SPACE_ENDPOINT,
       }
     })
     await new Promise((rs, rj) => client.uploadFile({
