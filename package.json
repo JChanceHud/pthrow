@@ -17,5 +17,7 @@
   ],
   "author": "Chance Hudson",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "s3": "^4.4.0"
+  }
 }
