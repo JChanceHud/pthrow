@@ -1,13 +1,17 @@
 {
-  "name": "apkdist",
+  "name": "pthrow",
   "version": "0.0.1",
-  "description": "Automated apk-distribution for react-native projects",
+  "description": "Automated install link distribution for react-native projects",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "pthrow": "./index.js"
+  },
   "keywords": [
     "apk",
+    "ipa",
     "react",
     "react-native"
   ],
