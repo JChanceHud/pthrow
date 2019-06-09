@@ -42,9 +42,7 @@ async function uploadApk(localFile, uploadOptions = {}, s3Options = {}) {
 }
 
 async function postComment(options = {}) {
-  await axios.get(`https://pthrower.jchancehud.now.sh`, {
-    params: options
-  })
+  await axios.post(`https://pthrower.jchancehud.now.sh`, options)
 }
 
 (async () => {
@@ -62,6 +60,7 @@ async function postComment(options = {}) {
       PTHROW_BUCKET: bucket,
       TRAVIS_BUILD_NUMBER: buildNumber,
     } = process.env
+    if (!pullNumber) return console.log('Not a pr buid, bailing')
     const Key = `${repoSlug}-${pullNumber}-${buildNumber}.apk`
     const apkUrl = await uploadApk(apkPath, {
       Key,
@@ -72,7 +71,6 @@ async function postComment(options = {}) {
       secretAccessKey,
       endpoint,
     })
-    if (!pullNumber) return // Not a PR build
     await postComment({
       pullNumber,
       repoSlug,
