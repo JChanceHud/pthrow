@@ -60,7 +60,7 @@ async function postComment(options = {}) {
       TRAVIS_BUILD_NUMBER: buildNumber,
       TRAVIS_COMMIT: commit,
     } = process.env
-    if (!pullNumber) return console.log('Not a pr buid, bailing')
+    if (isNaN(pullNumber)) return console.log('Not a pr buid, bailing')
     const Key = `${repoSlug}-${pullNumber}-${buildNumber}.apk`
     const apkUrl = await uploadApk(apkPath, {
       Key,
