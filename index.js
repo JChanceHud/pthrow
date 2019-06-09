@@ -59,6 +59,7 @@ async function postComment(options = {}) {
       TRAVIS_REPO_SLUG: repoSlug,
       PTHROW_BUCKET: bucket,
       TRAVIS_BUILD_NUMBER: buildNumber,
+      TRAVIS_COMMIT: commit,
     } = process.env
     if (!pullNumber) return console.log('Not a pr buid, bailing')
     const Key = `${repoSlug}-${pullNumber}-${buildNumber}.apk`
@@ -75,6 +76,7 @@ async function postComment(options = {}) {
       pullNumber,
       repoSlug,
       apkUrl,
+      commit,
     })
   } catch (err) {
     console.log('Uncaught error', err)
