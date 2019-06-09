@@ -21,7 +21,6 @@ async function buildAndLoadPath() {
 }
 
 async function uploadApk(localFile, uploadOptions = {}, s3Options = {}) {
-  const filename = `${+new Date()}.apk`
   const client = s3.createClient({
     s3Options: {
       s3BucketEndpoint: !!s3Options.endpoint,
@@ -38,7 +37,7 @@ async function uploadApk(localFile, uploadOptions = {}, s3Options = {}) {
     console.log('Error uploading', err)
     process.exit(1)
   }))
-  return path.join(s3Options.endpoint, filename)
+  return `${s3Options.endpoint}/${uploadOptions.Key}`
 }
 
 async function postComment(options = {}) {
