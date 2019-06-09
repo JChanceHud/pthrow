@@ -5,7 +5,6 @@ const path = require('path')
 const fs = require('fs')
 const s3 = require('s3');
 const axios = require('axios')
-const jwt = require('jwt-simple')
 
 (async () => {
   try {
