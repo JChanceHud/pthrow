@@ -4,6 +4,8 @@ const { exec } = require('child_process')
 const path = require('path')
 const fs = require('fs')
 const s3 = require('s3');
+const axios = require('axios')
+const jwt = require('jwt-simple')
 
 (async () => {
   try {
@@ -44,6 +46,15 @@ const s3 = require('s3');
       console.log('Error uploading', err)
       process.exit(1)
     }))
+    if (!process.env.TRAVIS_PULL_REQUEST) return
+    const url = path.join(process.env.PTHROW_SPACE_ENDPOINT, filename)
+    await axios.get(`https://pthrower.jchancehud.now.sh`, {
+      params: {
+        apkLink: url,
+        pullNumber: process.env.TRAVIS_PULL_REQUEST,
+        repoSlug: process.env.TRAVIS_REPO_SLUG,
+      },
+    })
   } catch (err) {
     console.log('Uncaught error', err)
     process.exit(1)
