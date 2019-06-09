@@ -35,6 +35,7 @@ const s3 = require('s3');
       s3Params: {
         Bucket: process.env.PTHROW_BUCKET,
         Key: filename,
+        ACL: 'public-read',
       },
     }).on('end', () => {
       console.log('APK uploaded')
