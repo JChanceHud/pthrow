@@ -1,0 +1,23 @@
+{
+  "name": "apkdist",
+  "version": "0.0.1",
+  "description": "Automated apk-distribution for react-native projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "apk",
+    "react",
+    "react-native"
+  ],
+  "author": "Chance Hudson",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
